@@ -7,7 +7,7 @@ else()
   find_package(PkgConfig QUIET)
 
   if(PKG_CONFIG_FOUND)
-    pkg_check_modules(ACADOS_PKG_CONFIG IMPORTED_TARGET acados>=2.2.0)
+    pkg_check_modules(ACADOS_PKG_CONFIG IMPORTED_TARGET acados)
     find_package_handle_standard_args(acados DEFAULT_MSG ACADOS_PKG_CONFIG_FOUND)
 
     if(acados_FOUND)
