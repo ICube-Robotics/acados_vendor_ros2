@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-model
+  href="http://download.ros.org/schema/package_format2.xsd"
+  schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="2">
+  <name>acados_vendor_ros2</name>
+  <version>0.1.0</version>
+  <description>Vendored version of acados.</description>
+  <maintainer email="tpoignonec@unistra.fr">Thibault Poignonec</maintainer>
+
+
+  <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->  
+  <url type="website">https://github.com/tpoignonec/acados_vendor_ros2.git</url> 
+
+  <author email="tpoignonec@unistra.fr">Thibault Poignonec</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_test</buildtool_depend>
+  <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
+  <buildtool_depend>pkg-config</buildtool_depend>
+
+  <buildtool_export_depend>pkg-config</buildtool_export_depend>
+
+  <depend>acados</depend>
+  
+  <test_depend>ament_cmake_copyright</test_depend>
+  <test_depend>ament_cmake_lint_cmake</test_depend>
+  <test_depend>ament_cmake_xmllint</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
