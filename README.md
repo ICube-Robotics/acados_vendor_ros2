@@ -7,10 +7,11 @@ Author: Thibault Poignonec (tpoignonec@unistra.fr)
 
 ```bash
 mkdir ros2_ws/src
-cd ros2_ws
-git clone https://github.com/tpoignonec/acados_vendor_ros2.git src
+cd ros2_ws/src
+git clone https://github.com/tpoignonec/acados_vendor_ros2.git
 
 # Download the source and install the c interface (lib "acados")
+cd ..
 colcon build 
 # Install the python interface (package "acados_template")
 colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=ON 
