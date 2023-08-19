@@ -12,9 +12,9 @@ git clone https://github.com/tpoignonec/acados_vendor_ros2.git
 
 # Download the source and install the c interface (lib "acados")
 cd ..
-colcon build 
+colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=OFF
 # Install the python interface (package "acados_template")
-colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=ON 
+colcon build 
 ```
 Note that `colcon build` is called twice. 
 

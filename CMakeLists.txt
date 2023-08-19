@@ -8,7 +8,7 @@ option(FORCE_BUILD_VENDOR_PKG
 
 option(BUILD_ACADOS_TEMPLATE
   "Build and install the Python interface ('acados_template' package). Requieres two consecutive builds to be effective!"
-  OFF
+  ON
 )
 
 # Default to C++17
