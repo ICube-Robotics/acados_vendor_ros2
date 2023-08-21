@@ -72,7 +72,7 @@ endif()
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 
 # Add empty bin directory (used to download the tera renderer)
-INSTALL(DIRECTORY DESTINATION "opt/bin") 
+INSTALL(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin") 
 
 ament_package(CONFIG_EXTRAS acados_vendor_ros2-extras.cmake)
 
