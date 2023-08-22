@@ -15,16 +15,16 @@
 # Author: Thibault Poignonec (tpoignonec@unistra.fr)
 
 include(FindPackageHandleStandardArgs)
-find_package(acados CONFIG QUIET)
+find_package(ACADOS CONFIG QUIET)
 if(acados_FOUND)
-  find_package_handle_standard_args(acados FOUND_VAR acados_FOUND CONFIG_MODE)
+  find_package_handle_standard_args(ACADOS FOUND_VAR acados_FOUND CONFIG_MODE)
 else()
   # Otherwise, rely on pkg-config
   find_package(PkgConfig QUIET)
 
   if(PKG_CONFIG_FOUND)
     pkg_check_modules(ACADOS_PKG_CONFIG IMPORTED_TARGET acados)
-    find_package_handle_standard_args(acados DEFAULT_MSG ACADOS_PKG_CONFIG_FOUND)
+    find_package_handle_standard_args(ACADOS DEFAULT_MSG ACADOS_PKG_CONFIG_FOUND)
 
     if(acados_FOUND)
       if(NOT TARGET acados)
