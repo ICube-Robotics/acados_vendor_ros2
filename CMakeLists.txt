@@ -32,17 +32,19 @@ ament_vendor(acados_vendor_ros2
 ament_export_dependencies(acados)
 
 set(ACADOS_SOURCE_DIR ${CMAKE_INSTALL_PREFIX}/opt/acados_vendor_ros2) # lib + include
-set(ACADOS_SOURCE_BUILD_DIR ${CMAKE_BINARY_DIR}/acados_vendor_ros2-prefix/src/acados_vendor_ros2) # Source files 
+set(ACADOS_SOURCE_BUILD_DIR ${CMAKE_BINARY_DIR}/acados_vendor_ros2-prefix/src/acados_vendor_ros2) # Source files
 set(ACADOS_PYTHON_INTERFACE_PATH none) # Python package after install, set bellow if package built
 
-if(${BUILD_ACADOS_TEMPLATE}) 
+if(${BUILD_ACADOS_TEMPLATE})
   add_custom_target(dummy_target ALL) # To force rebuilding...
   set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
   set(ACADOS_PYTHON_INTERFACE_PCK_DIR "${ACADOS_SOURCE_BUILD_DIR}/interfaces/acados_template/acados_template")
   if(EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}/__init__.py")
     message(
-      WARNING 
-      "The Python interface (acados_template) found in '${ACADOS_PYTHON_INTERFACE_PCK_DIR}' will be installed in '${ACADOS_PYTHON_INTERFACE_PATH}'."
+      WARNING
+      "The Python interface (acados_template) \
+      found in '${ACADOS_PYTHON_INTERFACE_PCK_DIR}' will be installed in \
+      '${ACADOS_PYTHON_INTERFACE_PATH}'."
     )
     ament_python_install_package(
       acados_template
@@ -50,9 +52,10 @@ if(${BUILD_ACADOS_TEMPLATE})
     )
   else()
       message(
-        WARNING 
-        "The Python interface (acados_template) could not be built because the external project was not yet downloaded!\n" 
-        "Please re-build the project once again!"
+        WARNING
+        "The Python interface (acados_template) could not be built \
+        because the external project was not yet downloaded!\n \
+        Please re-build the project once again!"
       )
   endif()
 endif()
@@ -64,7 +67,7 @@ if(BUILD_TESTING)
   find_package(ament_cmake_xmllint REQUIRED)
   ament_lint_cmake()
   ament_copyright()
-  ament_xmllint()  
+  ament_xmllint()
   # TODO: Extra unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
 endif()
@@ -72,7 +75,11 @@ endif()
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 
 # Add empty bin directory (used to download the tera renderer)
-INSTALL(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin") 
+set(ACADOS_BIN_DIR "opt/${PROJECT_NAME}/bin")
+INSTALL(
+  DIRECTORY DESTINATION
+  ACADOS_BIN_DIR
+)
 
 ament_package(CONFIG_EXTRAS acados_vendor_ros2-extras.cmake)
 
