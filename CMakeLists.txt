@@ -37,18 +37,18 @@ set(ACADOS_PYTHON_INTERFACE_PATH none) # Python package after install, set bello
 
 if(${BUILD_ACADOS_TEMPLATE})
   add_custom_target(dummy_target ALL) # To force rebuilding...
-  set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
   set(ACADOS_PYTHON_INTERFACE_PCK_DIR "${ACADOS_SOURCE_BUILD_DIR}/interfaces/acados_template/acados_template")
   if(EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}/__init__.py")
+    ament_python_install_package(
+      acados_template
+      PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
+    )
+    set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
     message(
       WARNING
       "The Python interface (acados_template) \
       found in '${ACADOS_PYTHON_INTERFACE_PCK_DIR}' will be installed in \
       '${ACADOS_PYTHON_INTERFACE_PATH}'."
-    )
-    ament_python_install_package(
-      acados_template
-      PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
     )
   else()
       message(
