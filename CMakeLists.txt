@@ -45,7 +45,7 @@ if(${BUILD_ACADOS_TEMPLATE})
     )
     set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
     message(
-      WARNING
+      STATUS
       "The Python interface (acados_template) \
       found in '${ACADOS_PYTHON_INTERFACE_PCK_DIR}' will be installed in \
       '${ACADOS_PYTHON_INTERFACE_PATH}'."
@@ -55,7 +55,7 @@ if(${BUILD_ACADOS_TEMPLATE})
         WARNING
         "The Python interface (acados_template) could not be built \
         because the external project was not yet downloaded!\n \
-        Please re-build the project once again!"
+        Please re-build the project once again with the cmake arg '-DBUILD_ACADOS_TEMPLATE=ON'!"
       )
   endif()
 endif()

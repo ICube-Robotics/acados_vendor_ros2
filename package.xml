@@ -20,8 +20,6 @@
 
   <buildtool_export_depend>pkg-config</buildtool_export_depend>
 
-  <depend>acados</depend>
-
   <test_depend>ament_cmake_copyright</test_depend>
   <test_depend>ament_cmake_lint_cmake</test_depend>
   <test_depend>ament_cmake_xmllint</test_depend>
