@@ -1,5 +1,5 @@
 # acados_vendor_ros2
-Simple ros2 vendor for Acados.
+Simple ros2 vendor for Acados (v0.2.2).
 
 Author: Thibault Poignonec (tpoignonec@unistra.fr)
 
@@ -14,7 +14,7 @@ git clone https://github.com/tpoignonec/acados_vendor_ros2.git
 cd ..
 colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=OFF
 # Install the python interface (package "acados_template")
-colcon build 
+colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=ON
 ```
 Note that `colcon build` is called twice. 
 
