@@ -15,7 +15,7 @@
 #
 # See https://github.com/pre-commit/pre-commit
 
-# exclude:
+exclude: cmake/Modules/FindFORTRANLIBS.cmake
 repos:
   # Standard hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks

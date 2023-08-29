@@ -69,6 +69,12 @@ if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   set(ament_cmake_copyright_FOUND TRUE)
   set(ament_cmake_cpplint_FOUND TRUE)
+
+  file(GLOB_RECURSE AMENT_LINT_AUTO_FILE_EXCLUDE
+    # Exclude auto generated c-code and CMakeLists
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
+  )
+
   ament_lint_auto_find_test_dependencies()
 
   # TODO(tpoignonec): Extra unit tests ?
