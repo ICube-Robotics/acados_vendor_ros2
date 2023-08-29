@@ -83,7 +83,7 @@ install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 install(
   FILES
     #${ACADOS_SOURCE_BUILD_DIR}/cmake/FindFortranLibs.cmake # Triggers naming convention warnings...
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFortranLibs.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
     ${ACADOS_SOURCE_BUILD_DIR}/cmake/FindOpenBLAS.cmake
   DESTINATION
     share/${PROJECT_NAME}/cmake/Modules

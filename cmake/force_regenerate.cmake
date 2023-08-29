@@ -6,7 +6,7 @@
 
 function(force_regenerate_at_next_build)
     set( FLAG_FILE_REBUILD ${CMAKE_CURRENT_SOURCE_DIR}/.flag_regenerate_cmake )
-    execute_process ( COMMAND touch ${FLAG_FILE_REBUILD} )
+    execute_process( COMMAND touch ${FLAG_FILE_REBUILD} )
     add_custom_target(regenerate_cmake ALL)
     add_custom_command(
         TARGET  regenerate_cmake
