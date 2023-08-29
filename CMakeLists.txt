@@ -1,19 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
 project(acados_vendor_ros2)
 
+# CMake options
 option(FORCE_BUILD_VENDOR_PKG
   "Build Acados from source, even if system-installed package is available"
   ON
 )
-
 option(BUILD_ACADOS_TEMPLATE
   "Build and install the Python interface ('acados_template' package). Requieres two consecutive builds to be effective!"
   ON
 )
 
-# Default to C++17
+# Setup
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD 17) # Default to C++17
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
@@ -72,11 +72,22 @@ if(BUILD_TESTING)
   ament_lint_cmake()
   ament_copyright()
   ament_xmllint()
-  # TODO: Extra unit tests ?
+  # TODO(tpoignonec): Extra unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
 endif()
 
+# Export 'FindAcados.cmake'
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
+
+# Copy additional cmake utils required by Acados
+install(
+  FILES
+    #${ACADOS_SOURCE_BUILD_DIR}/cmake/FindFortranLibs.cmake # Triggers naming convention warnings...
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFortranLibs.cmake
+    ${ACADOS_SOURCE_BUILD_DIR}/cmake/FindOpenBLAS.cmake
+  DESTINATION
+    share/${PROJECT_NAME}/cmake/Modules
+)
 
 # Add empty bin directory (used to download the tera renderer)
 install(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin")
