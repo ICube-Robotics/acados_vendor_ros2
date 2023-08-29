@@ -1,4 +1,3 @@
-#
 # Copyright (c) The acados authors.
 #
 # This file is part of acados.

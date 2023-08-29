@@ -23,7 +23,7 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v4
         with:
-          tags: acaods_vendor_ros2:humble
+          tags: acados_vendor_ros2:humble
           file: .docker/ci/Dockerfile
           push: false
 

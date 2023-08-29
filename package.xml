@@ -7,7 +7,7 @@
   <version>0.2.2</version>
   <description>Vendored version of acados.</description>
   <maintainer email="tpoignonec@unistra.fr">Thibault Poignonec</maintainer>
-  <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->  
+  <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->
   <url type="website">https://github.com/tpoignonec/acados_vendor_ros2.git</url>
 
   <author email="tpoignonec@unistra.fr">Thibault Poignonec</author>
