@@ -61,3 +61,11 @@ ocp_nlp_plan_t* plan_ptr = ocp_nlp_plan_create(N);
 
 > `setup.py` :
 Nothing special.
+
+> `XXX.py` :
+```python
+from acados_template import AcadosModel, AcadosOcp
+...
+model = AcadosModel()
+...
+```
