@@ -69,9 +69,8 @@ if(BUILD_TESTING)
   find_package(ament_cmake_lint_cmake REQUIRED)
   find_package(ament_cmake_copyright REQUIRED)
   find_package(ament_cmake_xmllint REQUIRED)
-  ament_lint_cmake()
-  ament_copyright()
-  ament_xmllint()
+
+  ament_lint_auto_find_test_dependencies()
   # TODO(tpoignonec): Extra unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
 endif()
