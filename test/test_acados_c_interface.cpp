@@ -23,8 +23,6 @@
 
 // Test nlp interface
 TEST(test_acados_vendor, test_include_acados_c_template) {
-    ocp_nlp_plan_t* plan_ptr = ocp_nlp_plan_create(10);
-    EXPECT_NE(plan_ptr, nullptr)
+  ocp_nlp_plan_t * plan_ptr = ocp_nlp_plan_create(10);
+  EXPECT_NE(plan_ptr, nullptr)
 }
-
-

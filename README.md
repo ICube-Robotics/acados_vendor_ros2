@@ -12,20 +12,18 @@ git clone https://github.com/tpoignonec/acados_vendor_ros2.git
 
 # Download the source and install the c interface (lib "acados")
 cd ..
-colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=OFF
-# Install the python interface (package "acados_template")
-colcon build --cmake-args -DBUILD_ACADOS_TEMPLATE=ON
+colcon build && colcon build
 ```
-Note that `colcon build` is called twice. 
+Note that `colcon build` is called twice.
 
 > N.B., this is necessary because `ament_vendor(...)` takes effect after the `ament_python_install_package(...)` command.
 However, the later tests for the existence of an `__init__.py` file in the path, hence resulting in an error since the Python package is not yet present.
 
->**TODO:** Allow unique build to avoid downstream build tests failures.
+>**TODO:** Allow unique build to avoid potential downstream build tests failures.
 
 ## Usage
 
-### For a C++ project 
+### For a C++ project
 > `package.xml` :
 ```xml
 ...
@@ -49,7 +47,7 @@ ocp_nlp_plan_t* plan_ptr = ocp_nlp_plan_create(N);
 ...
 ```
 
-### For a Python project 
+### For a Python project
 
 > `package.xml` :
 ```xml
@@ -59,4 +57,4 @@ ocp_nlp_plan_t* plan_ptr = ocp_nlp_plan_create(N);
 ```
 
 > `setup.py` :
-Nothing special. 
+Nothing special.

@@ -1,3 +1,9 @@
+# Copyright 2023 ICUBE Laboratory, University of Strasbourg
+# License: Apache License, Version 2.0
+# Author: Thibault Poignonec (tpoignonec@unistra.fr)
+
+# Part of the 'acados_vendor_ros2' package
+
 function(force_regenerate_at_next_build)
     set( FLAG_FILE_REBUILD ${CMAKE_CURRENT_SOURCE_DIR}/.flag_regenerate_cmake )
     execute_process ( COMMAND touch ${FLAG_FILE_REBUILD} )
