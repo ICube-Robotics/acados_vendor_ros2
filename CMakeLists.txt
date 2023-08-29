@@ -7,7 +7,7 @@ option(FORCE_BUILD_VENDOR_PKG
   ON
 )
 option(BUILD_ACADOS_TEMPLATE
-  "Build and install the Python interface ('acados_template' package). Requieres two consecutive builds to be effective!"
+  "Build and install the Python interface ('acados_template' package). Requires two consecutive builds to be effective!"
   ON
 )
 
@@ -33,7 +33,7 @@ ament_export_dependencies(acados)
 
 set(ACADOS_SOURCE_DIR ${CMAKE_INSTALL_PREFIX}/opt/acados_vendor_ros2) # lib + include
 set(ACADOS_SOURCE_BUILD_DIR ${CMAKE_BINARY_DIR}/acados_vendor_ros2-prefix/src/acados_vendor_ros2) # Source files
-set(ACADOS_PYTHON_INTERFACE_PATH none) # Python package after install, set bellow if package built
+set(ACADOS_PYTHON_INTERFACE_PATH none) # Python package after install, set below if package built
 
 if(${BUILD_ACADOS_TEMPLATE})
   set(ACADOS_PYTHON_INTERFACE_PCK_DIR "${ACADOS_SOURCE_BUILD_DIR}/interfaces/acados_template/acados_template")
@@ -66,12 +66,17 @@ endif()
 ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/${PROJECT_NAME}.sh.in")
 
 if(BUILD_TESTING)
-  find_package(ament_cmake_lint_cmake REQUIRED)
-  find_package(ament_cmake_copyright REQUIRED)
-  find_package(ament_cmake_xmllint REQUIRED)
-  ament_lint_cmake()
-  ament_copyright()
-  ament_xmllint()
+  find_package(ament_lint_auto REQUIRED)
+  set(ament_cmake_copyright_FOUND TRUE)
+  set(ament_cmake_cpplint_FOUND TRUE)
+
+  file(GLOB_RECURSE AMENT_LINT_AUTO_FILE_EXCLUDE
+    # Exclude auto generated c-code and CMakeLists
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
+  )
+
+  ament_lint_auto_find_test_dependencies()
+
   # TODO(tpoignonec): Extra unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
 endif()
@@ -93,4 +98,3 @@ install(
 install(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin")
 
 ament_package(CONFIG_EXTRAS acados_vendor_ros2-extras.cmake)
-

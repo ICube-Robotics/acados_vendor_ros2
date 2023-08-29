@@ -7,7 +7,7 @@
   <version>0.2.2</version>
   <description>Vendored version of acados.</description>
   <maintainer email="tpoignonec@unistra.fr">Thibault Poignonec</maintainer>
-  <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->  
+  <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->
   <url type="website">https://github.com/tpoignonec/acados_vendor_ros2.git</url>
 
   <author email="tpoignonec@unistra.fr">Thibault Poignonec</author>
@@ -23,6 +23,7 @@
   <test_depend>ament_cmake_copyright</test_depend>
   <test_depend>ament_cmake_lint_cmake</test_depend>
   <test_depend>ament_cmake_xmllint</test_depend>
+  <test_depend>ament_lint_auto</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
