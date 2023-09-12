@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# Author: Thibault Poignonec (tpoignonec@unistra.fr)
+# Author: Thibault Poignonec (thibault.poignonec@gmail.com)
 
 include(FindPackageHandleStandardArgs)
 find_package(ACADOS CONFIG QUIET)

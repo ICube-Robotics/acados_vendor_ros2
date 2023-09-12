@@ -1,7 +1,7 @@
 # acados_vendor_ros2
 Simple ros2 vendor for Acados (v0.2.2).
 
-Author: Thibault Poignonec (tpoignonec@unistra.fr)
+Author: Thibault Poignonec (thibault.poignonec@gmail.com)
 
 [![CI](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml/badge.svg)](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml)
 
