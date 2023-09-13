@@ -22,7 +22,7 @@ find_package(ament_cmake_python REQUIRED)
 find_package(ament_cmake_vendor_package REQUIRED)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
-find_package(acados 0.2.2 EXACT QUIET)
+find_package(acados 0.2.3 EXACT QUIET)
 
 ament_vendor(acados_vendor_ros2
   SATISFIED ${acados_FOUND}
