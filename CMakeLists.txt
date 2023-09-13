@@ -72,7 +72,7 @@ if(BUILD_TESTING)
 
   file(GLOB_RECURSE AMENT_LINT_AUTO_FILE_EXCLUDE
     # Exclude auto generated c-code and CMakeLists
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFortranLibs.cmake
   )
 
   ament_lint_auto_find_test_dependencies()
@@ -85,10 +85,12 @@ endif()
 install(DIRECTORY cmake DESTINATION share/${PROJECT_NAME})
 
 # Copy additional cmake utils required by Acados
+#  (to suppress findPackage warnings in downstream packages)
 install(
   FILES
-    #${ACADOS_SOURCE_BUILD_DIR}/cmake/FindFortranLibs.cmake # Triggers naming convention warnings...
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
+    #${ACADOS_SOURCE_BUILD_DIR}/cmake/FindFortranLibs.cmake
+    # Note: Can triggers naming convention warnings...
+    #${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFORTRANLIBS.cmake
     ${ACADOS_SOURCE_BUILD_DIR}/cmake/FindOpenBLAS.cmake
   DESTINATION
     share/${PROJECT_NAME}/cmake/Modules

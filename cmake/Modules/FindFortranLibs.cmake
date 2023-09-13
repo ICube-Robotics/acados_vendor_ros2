@@ -27,6 +27,7 @@
 # POSSIBILITY OF SUCH DAMAGE.;
 #
 
+# lint_cmake: -convention/filename
 
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     list(APPEND CMAKE_FIND_LIBRARY_PREFIXES "lib")
@@ -52,6 +53,12 @@ if(NOT FORTRAN_LIBRARY)
         CMAKE_FIND_ROOT_PATH_BOTH)
 endif()
 
+find_package(PkgConfig QUIET)
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(FORTRANLIBS FOUND_VAR FORTRANLIBS_FOUND
-                                              REQUIRED_VARS FORTRAN_LIBRARY)
+
+# lint_cmake: -package/stdargs
+find_package_handle_standard_args(
+    FortranLibs
+    FOUND_VAR FortranLibs_FOUND
+    REQUIRED_VARS FORTRAN_LIBRARY
+) # NO_LINT
