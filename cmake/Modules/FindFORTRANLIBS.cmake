@@ -54,5 +54,6 @@ endif()
 
 find_package(PkgConfig QUIET)
 include(FindPackageHandleStandardArgs)
-find_package_handle_standard_args(FortranLibs FOUND_VAR FortranLibs_FOUND
-                                              REQUIRED_VARS FORTRAN_LIBRARY)
+# cmake-lint: disable
+find_package_handle_standard_args(FORTRANLIBS FOUND_VAR FORTRANLIBS_FOUND
+                                              REQUIRED_VARS FORTRAN_LIBRARY) # NO_LINT

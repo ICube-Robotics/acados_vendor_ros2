@@ -15,6 +15,7 @@ git clone https://github.com/tpoignonec/acados_vendor_ros2.git
 
 # Download the source and install the c interface (lib "acados")
 cd ..
+rosdep install --ignore-src --from-paths . -y -r
 colcon build && colcon build
 ```
 Note that `colcon build` is called twice.
