@@ -1,9 +1,11 @@
 # acados_vendor_ros2
 Simple ros2 vendor for Acados (v0.2.3).
 
-Author: Thibault Poignonec (thibault.poignonec@gmail.com)
+__Author:__ Thibault Poignonec (thibault.poignonec@gmail.com)
 
-[![CI](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml/badge.svg)](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml)
+[![CI (humble)](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml/badge.svg)](https://github.com/tpoignonec/acados_vendor_ros2/actions/workflows/ci.yml)
+[![Build tests (iron)](../../actions/workflows/ci-iron.yaml/badge.svg?branch=main)](../../actions/workflows/ci-iron.yaml?query=branch:main)
+[![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
 
 
 ## Installation
