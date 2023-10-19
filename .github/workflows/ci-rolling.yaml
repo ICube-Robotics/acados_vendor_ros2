@@ -1,0 +1,22 @@
+name: CI (rolling)
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:jammy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: rolling
+          use-ros2-testing: true
+      - uses: ros-tooling/action-ros-ci@v0.3
+        continue-on-error: true
+        with:
+          target-ros2-distro: rolling
