@@ -27,6 +27,11 @@ However, the later tests for the existence of an `__init__.py` file in the path,
 
 >**TODO:** Allow unique build to avoid potential downstream build tests failures.
 
+>**NOTE:** If the `ament_cmake_vendor_package` is missing, you can install it manually:
+```bash
+sudo apt install ros-<ROS_DISTRO>-ament-cmake-vendor-package
+```
+
 ## Usage
 
 ### For a C++ project
