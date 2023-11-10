@@ -1,5 +1,5 @@
 # acados_vendor_ros2
-Simple ros2 vendor for Acados (v0.2.3).
+Simple ros2 vendor for Acados (v0.2.5).
 
 __Author:__ Thibault Poignonec (thibault.poignonec@gmail.com)
 
