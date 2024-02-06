@@ -22,12 +22,12 @@ find_package(ament_cmake_python REQUIRED)
 find_package(ament_cmake_vendor_package REQUIRED)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
-find_package(acados 0.2.6 EXACT QUIET)
+find_package(acados 0.3.0 EXACT QUIET)
 
 ament_vendor(acados_vendor_ros2
   SATISFIED ${acados_FOUND}
   VCS_URL https://github.com/acados/acados.git
-  VCS_VERSION v0.2.6
+  VCS_VERSION v0.3.0
 )
 ament_export_dependencies(acados)
 
