@@ -8,7 +8,7 @@
   <description>Vendored version of acados.</description>
   <maintainer email="thibault.poignonec@gmail.com">Thibault Poignonec</maintainer>
   <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->
-  <url type="website">https://github.com/tpoignonec/acados_vendor_ros2.git</url>
+  <url type="website">https://github.com/ICube-Robotics/acados_vendor_ros2.git</url>
 
   <author email="thibault.poignonec@gmail.com">Thibault Poignonec</author>
 
