@@ -4,7 +4,7 @@
   schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
   <name>acados_vendor_ros2</name>
-  <version>0.3.1</version>
+  <version>0.3.2</version>
   <description>Vendored version of acados.</description>
   <maintainer email="thibault.poignonec@gmail.com">Thibault Poignonec</maintainer>
   <license>Apache License 2.0</license>  <!-- the contents of this package are Apache 2.0 -->
