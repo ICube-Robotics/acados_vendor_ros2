@@ -1,4 +1,4 @@
-name: CI (iron)
+name: CI (jazzy)
 on:
   push:
     branches: [ main ]
@@ -9,14 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:jammy
+      image: ubuntu:noble
     steps:
       - uses: actions/checkout@v4
       - uses: ros-tooling/setup-ros@v0.7
         with:
-          required-ros-distributions: iron
+          required-ros-distributions: jazzy
           use-ros2-testing: true
       - uses: ros-tooling/action-ros-ci@v0.3
         continue-on-error: true
         with:
-          target-ros2-distro: iron
+          target-ros2-distro: jazzy

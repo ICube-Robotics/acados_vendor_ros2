@@ -3,7 +3,7 @@ Simple ros2 vendor for Acados.
 
 ![version](https://img.shields.io/badge/version-0.3.2-blue)
 [![CI (humble)](https://github.com/ICube-Robotics/acados_vendor_ros2/actions/workflows/ci.yml/badge.svg)](https://github.com/ICube-Robotics/acados_vendor_ros2/actions/workflows/ci.yml)
-[![Build tests (iron)](../../actions/workflows/ci-iron.yaml/badge.svg?branch=main)](../../actions/workflows/ci-iron.yaml?query=branch:main)
+[![Build tests (jazzy)](../../actions/workflows/ci-jazzy.yaml/badge.svg?branch=main)](../../actions/workflows/ci-jazzy.yaml?query=branch:main)
 [![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
 
 
