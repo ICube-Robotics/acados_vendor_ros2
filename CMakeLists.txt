@@ -49,6 +49,24 @@ if(${BUILD_ACADOS_TEMPLATE})
       found in '${ACADOS_PYTHON_INTERFACE_PCK_DIR}' will be installed in \
       '${ACADOS_PYTHON_INTERFACE_PATH}'."
     )
+
+    set(TERA_RENDERER "${ACADOS_SOURCE_DIR}/bin/t_renderer")
+    if(NOT EXISTS "${TERA_RENDERER}")
+      message(STATUS "Downloading tera renderer")
+
+      set(TERA_VERSION "0.0.34")
+      if(UNIX AND NOT APPLE)
+        set(TERA_SUFFIX linux)
+      elseif(APPLE)
+        set(TERA_SUFFIX osx)
+      else()
+        set(TERA_SUFFIX windows)
+      endif()
+
+      file(DOWNLOAD "https://github.com/acados/tera_renderer/releases/download/v${TERA_VERSION}/t_renderer-v${TERA_VERSION}-${TERA_SUFFIX}" ${TERA_RENDERER})
+      file(CHMOD ${TERA_RENDERER} PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ GROUP_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+    endif()
+
   else()
     # Force a CMAKE regeneration at next 'colcon build' call
     include("${CMAKE_CURRENT_LIST_DIR}/cmake/force_regenerate.cmake")
