@@ -11,6 +11,15 @@ option(BUILD_ACADOS_TEMPLATE
   ON
 )
 
+# ACADOS options on External libs
+option(ACADOS_WITH_QPOASES "qpOASES solver" OFF)
+option(ACADOS_WITH_DAQP "DAQP solver" OFF)
+option(ACADOS_WITH_HPMPC "HPMPC solver" OFF)
+option(ACADOS_WITH_QORE "QORE solver" OFF)
+option(ACADOS_WITH_OOQP "OOQP solver" OFF)
+option(ACADOS_WITH_QPDUNES "qpDUNES solver" OFF)
+option(ACADOS_WITH_OSQP "OSQP solver" OFF)
+
 # Setup
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD 17) # Default to C++17
@@ -28,7 +37,15 @@ ament_vendor(acados_vendor_ros2
   SATISFIED ${acados_FOUND}
   VCS_URL https://github.com/acados/acados.git
   VCS_VERSION v0.3.2
-)
+  CMAKE_ARGS
+"-DACADOS_WITH_QPOASES=${ACADOS_WITH_QPOASES};\
+-DACADOS_WITH_DAQP=${ACADOS_WITH_DAQP};\
+-DACADOS_WITH_HPMPC=${ACADOS_WITH_HPMPC};\
+-DACADOS_WITH_QORE=${ACADOS_WITH_QORE};\
+-DACADOS_WITH_OOQP=${ACADOS_WITH_OOQP};\
+-DACADOS_WITH_QPDUNES=${ACADOS_WITH_QPDUNES};\
+-DACADOS_WITH_OSQP=${ACADOS_WITH_OSQP}"
+  )
 ament_export_dependencies(acados)
 
 set(ACADOS_SOURCE_DIR ${CMAKE_INSTALL_PREFIX}/opt/acados_vendor_ros2) # lib + include
