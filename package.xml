@@ -18,6 +18,8 @@
   <buildtool_depend>ament_cmake_vendor_package</buildtool_depend>
   <buildtool_depend>pkg-config</buildtool_depend>
 
+  <exec_depend>casadi-pip</exec_depend>
+
   <buildtool_export_depend>pkg-config</buildtool_export_depend>
 
   <test_depend>ament_cmake_copyright</test_depend>

@@ -17,14 +17,8 @@ git clone https://github.com/ICube-Robotics/acados_vendor_ros2.git
 # Download the source and install the c interface (lib "acados")
 cd ..
 rosdep install --ignore-src --from-paths . -y -r
-colcon build && colcon build
+colcon build
 ```
-Note that `colcon build` is called twice.
-
-> N.B., this is necessary because `ament_vendor(...)` takes effect after the `ament_python_install_package(...)` command.
-However, the later tests for the existence of an `__init__.py` file in the path, hence resulting in an error since the Python package is not yet present.
-
->**TODO:** Allow unique build to avoid potential downstream build tests failures.
 
 >**NOTE:** If the `ament_cmake_vendor_package` is missing, you can install it manually:
 ```bash
