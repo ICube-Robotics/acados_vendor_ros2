@@ -38,14 +38,14 @@ ament_vendor(acados_vendor_ros2
   VCS_URL https://github.com/acados/acados.git
   VCS_VERSION v0.3.2
   CMAKE_ARGS
-"-DACADOS_WITH_QPOASES=${ACADOS_WITH_QPOASES};\
--DACADOS_WITH_DAQP=${ACADOS_WITH_DAQP};\
--DACADOS_WITH_HPMPC=${ACADOS_WITH_HPMPC};\
--DACADOS_WITH_QORE=${ACADOS_WITH_QORE};\
--DACADOS_WITH_OOQP=${ACADOS_WITH_OOQP};\
--DACADOS_WITH_QPDUNES=${ACADOS_WITH_QPDUNES};\
--DACADOS_WITH_OSQP=${ACADOS_WITH_OSQP}"
-  )
+  "-DACADOS_WITH_QPOASES=${ACADOS_WITH_QPOASES};\
+  -DACADOS_WITH_DAQP=${ACADOS_WITH_DAQP};\
+  -DACADOS_WITH_HPMPC=${ACADOS_WITH_HPMPC};\
+  -DACADOS_WITH_QORE=${ACADOS_WITH_QORE};\
+  -DACADOS_WITH_OOQP=${ACADOS_WITH_OOQP};\
+  -DACADOS_WITH_QPDUNES=${ACADOS_WITH_QPDUNES};\
+  -DACADOS_WITH_OSQP=${ACADOS_WITH_OSQP}"
+)
 ament_export_dependencies(acados)
 
 set(ACADOS_SOURCE_DIR ${CMAKE_INSTALL_PREFIX}/opt/acados_vendor_ros2) # lib + include
@@ -58,12 +58,12 @@ if(${BUILD_ACADOS_TEMPLATE})
   set(ACADOS_PYTHON_INTERFACE_PCK_DIR "${ACADOS_SOURCE_BUILD_DIR}/interfaces/acados_template/acados_template")
 
   if(NOT EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
-     message(STATUS "Cloning Acados source")
-     file(MAKE_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR})
-      execute_process(COMMAND git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v0.3.2 .
-                      WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
-                      RESULT_VARIABLE ACADOS_GIT_OUT
-                      OUTPUT_VARIABLE ACADOS_GIT_OUT)
+    message(STATUS "Cloning Acados source")
+    file(MAKE_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR})
+    execute_process(COMMAND git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v0.3.2 .
+                    WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
+                    RESULT_VARIABLE ACADOS_GIT_OUT
+                    OUTPUT_VARIABLE ACADOS_GIT_OUT)
   else()
     message(STATUS "${ACADOS_SOURCE_BUILD_DIR} already exists")
   endif()
@@ -95,8 +95,13 @@ if(${BUILD_ACADOS_TEMPLATE})
       set(TERA_SUFFIX windows)
     endif()
 
-    file(DOWNLOAD "https://github.com/acados/tera_renderer/releases/download/v${TERA_VERSION}/t_renderer-v${TERA_VERSION}-${TERA_SUFFIX}" ${TERA_RENDERER})
-    file(CHMOD ${TERA_RENDERER} PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ GROUP_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+    file(DOWNLOAD
+      "https://github.com/acados/tera_renderer/releases/download/v${TERA_VERSION}/t_renderer-v${TERA_VERSION}-${TERA_SUFFIX}"
+      ${TERA_RENDERER})
+    file(CHMOD
+      ${TERA_RENDERER}
+      PERMISSIONS
+        OWNER_READ OWNER_WRITE GROUP_READ GROUP_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
   endif()
 endif()
 ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/${PROJECT_NAME}.sh.in")
