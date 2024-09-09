@@ -84,20 +84,32 @@ if(${BUILD_ACADOS_TEMPLATE})
   if(NOT EXISTS "${TERA_RENDERER}")
     # Add empty bin directory (used to download the tera renderer)
     install(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin")
-    message(STATUS "Downloading tera renderer")
-
-    set(TERA_VERSION "0.0.34")
-    if(UNIX AND NOT APPLE)
-      set(TERA_SUFFIX linux)
-    elseif(APPLE)
-      set(TERA_SUFFIX osx)
+    set(TERA_VERSION "0.0.35")
+    # Clone the tera renderer
+    message(STATUS "Cloning Tera renderer")
+    if (NOT EXISTS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer")
+      execute_process(COMMAND git clone --quiet https://github.com/acados/tera_renderer -b v${TERA_VERSION}
+                      WORKING_DIRECTORY "${ACADOS_SOURCE_BUILD_DIR}"
+                      RESULT_VARIABLE TERA_GIT_OUT
+                      OUTPUT_VARIABLE TERA_GIT_OUT)
+      if(NOT TERA_GIT_OUT EQUAL 0)
+        message(FATAL_ERROR "Failed to clone Tera renderer")
+      endif()
     else()
-      set(TERA_SUFFIX windows)
+      message(STATUS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer already exists")
     endif()
-
-    file(DOWNLOAD
-      "https://github.com/acados/tera_renderer/releases/download/v${TERA_VERSION}/t_renderer-v${TERA_VERSION}-${TERA_SUFFIX}"
-      ${TERA_RENDERER})
+    # Compile the tera renderer
+    message(STATUS "Building Tera renderer")
+    execute_process(COMMAND cargo build --quiet --release
+                    WORKING_DIRECTORY "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer"
+                    RESULT_VARIABLE TERA_BUILD_OUT
+                    OUTPUT_VARIABLE TERA_BUILD_OUT)
+    if(NOT TERA_BUILD_OUT EQUAL 0)
+      message(FATAL_ERROR "Failed to build Tera renderer")
+    endif()
+    # Copy the tera renderer
+    file(COPY "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer/target/release/t_renderer"
+      DESTINATION "${ACADOS_SOURCE_DIR}/bin")
     file(CHMOD
       ${TERA_RENDERER}
       PERMISSIONS
