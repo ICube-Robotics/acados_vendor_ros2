@@ -87,7 +87,7 @@ if(${BUILD_ACADOS_TEMPLATE})
     set(TERA_VERSION "0.0.35")
     # Clone the tera renderer
     message(STATUS "Cloning Tera renderer")
-    if (NOT EXISTS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer")
+    if(NOT EXISTS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer")
       execute_process(COMMAND git clone --quiet https://github.com/acados/tera_renderer -b v${TERA_VERSION}
                       WORKING_DIRECTORY "${ACADOS_SOURCE_BUILD_DIR}"
                       RESULT_VARIABLE TERA_GIT_OUT
