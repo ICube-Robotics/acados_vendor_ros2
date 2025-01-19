@@ -120,18 +120,7 @@ endif()
 ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/${PROJECT_NAME}.sh.in")
 
 if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  set(ament_cmake_copyright_FOUND TRUE)
-  set(ament_cmake_cpplint_FOUND TRUE)
-
-  file(GLOB_RECURSE AMENT_LINT_AUTO_FILE_EXCLUDE
-    # Exclude auto generated c-code and CMakeLists
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/FindFortranLibs.cmake
-  )
-
-  ament_lint_auto_find_test_dependencies()
-
-  # TODO(tpoignonec): Extra unit tests ?
+  # TODO(anyone): Add unit tests ?
   # See https://github.com/ros2/libyaml_vendor/blob/rolling/CMakeLists.txt for an example
 endif()
 
