@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(acados_vendor_ros2)
 
+set(ACADOS_VERSION "0.3.6")
 # CMake options
 option(FORCE_BUILD_VENDOR_PKG
   "Build Acados from source, even if system-installed package is available"
@@ -31,12 +32,12 @@ find_package(ament_cmake_python REQUIRED)
 find_package(ament_cmake_vendor_package REQUIRED)
 
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
-find_package(acados 0.3.2 EXACT QUIET)
+find_package(acados ${ACADOS_VERSION} EXACT QUIET)
 
 ament_vendor(acados_vendor_ros2
   SATISFIED ${acados_FOUND}
   VCS_URL https://github.com/acados/acados.git
-  VCS_VERSION v0.3.2
+  VCS_VERSION v${ACADOS_VERSION}
   CMAKE_ARGS
   "-DACADOS_WITH_QPOASES=${ACADOS_WITH_QPOASES};\
   -DACADOS_WITH_DAQP=${ACADOS_WITH_DAQP};\
@@ -60,7 +61,7 @@ if(${BUILD_ACADOS_TEMPLATE})
   if(NOT EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
     message(STATUS "Cloning Acados source")
     file(MAKE_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR})
-    execute_process(COMMAND git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v0.3.2 .
+    execute_process(COMMAND git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v${ACADOS_VERSION} .
                     WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
                     RESULT_VARIABLE ACADOS_GIT_OUT
                     OUTPUT_VARIABLE ACADOS_GIT_OUT)
