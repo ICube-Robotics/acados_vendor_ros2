@@ -25,7 +25,7 @@ cd acados_vendor_ros2
 PIP_BREAK_SYSTEM_PACKAGES=1 rosdep install --from-paths . -y --ignore-src
 colcon build
 ```
-> **Tip:** Since Ubuntu 24.04, pip restricts installing Python packages to system locations by default. The `PIP_BREAK_SYSTEM_PACKAGES=1` flag allows `rosdep` to install Python dependencies even when system Python is used.
+> **Note:** Since Ubuntu 24.04, pip restricts installing Python packages to system locations by default. The `PIP_BREAK_SYSTEM_PACKAGES=1` flag allows `rosdep` to install Python dependencies even when system Python is used.
 > You can avoid using the flag if you manually install the `casadi` binaries beforehand as a system package or if you use a virtual environment (**later option recommended**).
 
 ## Usage
