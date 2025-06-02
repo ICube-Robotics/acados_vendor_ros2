@@ -6,24 +6,27 @@ Simple ros2 vendor for Acados.
 [![Build tests (jazzy)](../../actions/workflows/ci-jazzy.yaml/badge.svg?branch=main)](../../actions/workflows/ci-jazzy.yaml?query=branch:main)
 [![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
 
-
-## Installation
+## Installation (humble)
 
 ```bash
-mkdir ros2_ws/src
-cd ros2_ws/src
 git clone https://github.com/ICube-Robotics/acados_vendor_ros2.git
+cd acados_vendor_ros2
 
-# Download the source and install the c interface (lib "acados")
-cd ..
-rosdep install --ignore-src --from-paths . -y -r
+rosdep install --from-paths . -y --ignore-src
 colcon build
 ```
 
->**NOTE:** If the `ament_cmake_vendor_package` is missing, you can install it manually:
+## Installation (jazzy and later)
+
 ```bash
-sudo apt install ros-<ROS_DISTRO>-ament-cmake-vendor-package
+git clone https://github.com/ICube-Robotics/acados_vendor_ros2.git
+cd acados_vendor_ros2
+
+PIP_BREAK_SYSTEM_PACKAGES=1 rosdep install --from-paths . -y --ignore-src
+colcon build
 ```
+> **Tip:** Since Ubuntu 24.04, pip restricts installing Python packages to system locations by default. The `PIP_BREAK_SYSTEM_PACKAGES=1` flag allows `rosdep` to install Python dependencies even when system Python is used.
+> You can avoid using the flag if you manually install the `casadi` binaries beforehand as a system package or if you use a virtual environment (**later option recommended**).
 
 ## Usage
 
