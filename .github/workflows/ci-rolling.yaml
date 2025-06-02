@@ -16,6 +16,8 @@ jobs:
         with:
           required-ros-distributions: rolling
           use-ros2-testing: true
+      - name: Allow pip to install packages
+        run: printf "[install]\nbreak-system-packages = true\n" | sudo tee -a /etc/pip.conf
       - uses: ros-tooling/action-ros-ci@v0.4
         continue-on-error: true
         with:
