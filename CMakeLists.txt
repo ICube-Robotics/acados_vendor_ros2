@@ -85,7 +85,7 @@ if(${BUILD_ACADOS_TEMPLATE})
   if(NOT EXISTS "${TERA_RENDERER}")
     # Add empty bin directory (used to download the tera renderer)
     install(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin")
-    set(TERA_VERSION "0.0.35")
+    set(TERA_VERSION "0.0.34")
     # Clone the tera renderer
     message(STATUS "Cloning Tera renderer")
     if(NOT EXISTS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer")
