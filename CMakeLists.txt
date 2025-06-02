@@ -85,36 +85,31 @@ if(${BUILD_ACADOS_TEMPLATE})
   if(NOT EXISTS "${TERA_RENDERER}")
     # Add empty bin directory (used to download the tera renderer)
     install(DIRECTORY DESTINATION "opt/${PROJECT_NAME}/bin")
-    set(TERA_VERSION "0.0.35")
-    # Clone the tera renderer
-    message(STATUS "Cloning Tera renderer")
-    if(NOT EXISTS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer")
-      execute_process(COMMAND git clone --quiet https://github.com/acados/tera_renderer -b v${TERA_VERSION}
-                      WORKING_DIRECTORY "${ACADOS_SOURCE_BUILD_DIR}"
-                      RESULT_VARIABLE TERA_GIT_OUT
-                      OUTPUT_VARIABLE TERA_GIT_OUT)
-      if(NOT TERA_GIT_OUT EQUAL 0)
-        message(FATAL_ERROR "Failed to clone Tera renderer")
-      endif()
-    else()
-      message(STATUS "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer already exists")
+    set(TERA_VERSION "0.0.34")
+    set(TERA_URL_BASE "https://github.com/acados/tera_renderer")
+    set(TERA_URL "${TERA_URL_BASE}/releases/download/v${TERA_VERSION}/t_renderer-v${TERA_VERSION}-linux")
+    message(STATUS "Tera renderer not found, downloading version ${TERA_VERSION} from ${TERA_URL}")
+
+    # Download binaries for the tera renderer
+    file(DOWNLOAD
+      "${TERA_URL}"
+      "${TERA_RENDERER}"
+      SHOW_PROGRESS
+      STATUS TERA_DOWNLOAD_STATUS
+    )
+    list(GET TERA_DOWNLOAD_STATUS 0 TERA_DOWNLOAD_CODE)
+    if(NOT TERA_DOWNLOAD_CODE EQUAL 0)
+      message(FATAL_ERROR "Failed to download Tera renderer: ${TERA_DOWNLOAD_STATUS}")
     endif()
-    # Compile the tera renderer
-    message(STATUS "Building Tera renderer")
-    execute_process(COMMAND cargo build --quiet --release
-                    WORKING_DIRECTORY "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer"
-                    RESULT_VARIABLE TERA_BUILD_OUT
-                    OUTPUT_VARIABLE TERA_BUILD_OUT)
-    if(NOT TERA_BUILD_OUT EQUAL 0)
-      message(FATAL_ERROR "Failed to build Tera renderer")
-    endif()
-    # Copy the tera renderer
-    file(COPY "${ACADOS_SOURCE_BUILD_DIR}/tera_renderer/target/release/t_renderer"
-      DESTINATION "${ACADOS_SOURCE_DIR}/bin")
+
+    # Make the tera renderer executable
     file(CHMOD
       ${TERA_RENDERER}
       PERMISSIONS
-        OWNER_READ OWNER_WRITE GROUP_READ GROUP_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+        OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        GROUP_READ GROUP_EXECUTE
+        WORLD_READ WORLD_EXECUTE
+    )
   endif()
 endif()
 ament_environment_hooks("${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/${PROJECT_NAME}.sh.in")
