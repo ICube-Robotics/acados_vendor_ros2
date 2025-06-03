@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(acados_vendor_ros2)
 
-set(ACADOS_VERSION "0.3.6")
+set(ACADOS_VERSION "0.4.0")
 # CMake options
 option(FORCE_BUILD_VENDOR_PKG
   "Build Acados from source, even if system-installed package is available"
