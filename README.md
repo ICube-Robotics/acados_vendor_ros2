@@ -1,7 +1,7 @@
 # acados_vendor_ros2
 Simple ros2 vendor for Acados.
 
-![version](https://img.shields.io/badge/version-0.4.0-blue)
+![version](https://img.shields.io/badge/version-0.5.0-blue)
 [![CI (humble)](https://github.com/ICube-Robotics/acados_vendor_ros2/actions/workflows/ci-humble.yml/badge.svg)](https://github.com/ICube-Robotics/acados_vendor_ros2/actions/workflows/ci-humble.yml)
 [![Build tests (jazzy)](../../actions/workflows/ci-jazzy.yaml/badge.svg?branch=main)](../../actions/workflows/ci-jazzy.yaml?query=branch:main)
 [![Build tests (rolling)](../../actions/workflows/ci-rolling.yaml/badge.svg?branch=main)](../../actions/workflows/ci-rolling.yaml?query=branch:main)
@@ -25,7 +25,10 @@ cd acados_vendor_ros2
 PIP_BREAK_SYSTEM_PACKAGES=1 rosdep install --from-paths . -y --ignore-src
 colcon build
 ```
-> [!TIP] Since Ubuntu 24.04, pip restricts installing Python packages to system locations by default. The `PIP_BREAK_SYSTEM_PACKAGES=1` flag allows `rosdep` to install Python dependencies even when system Python is used.
+
+> [!TIP]
+> Since Ubuntu 24.04, pip restricts installing Python packages to system locations by default.
+> The `PIP_BREAK_SYSTEM_PACKAGES=1` flag allows `rosdep` to install Python dependencies even when system Python is used.
 > You can avoid using the flag if you manually install the `casadi` binaries beforehand as a system package or if you use a virtual environment (**later option recommended**).
 
 ## Usage
