@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(acados_vendor_ros2)
 
-set(ACADOS_VERSION "0.3.6")
+set(ACADOS_VERSION "0.4.0")
 # CMake options
 option(FORCE_BUILD_VENDOR_PKG
   "Build Acados from source, even if system-installed package is available"
@@ -61,10 +61,11 @@ if(${BUILD_ACADOS_TEMPLATE})
   if(NOT EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
     message(STATUS "Cloning Acados source")
     file(MAKE_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR})
-    execute_process(COMMAND git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v${ACADOS_VERSION} .
-                    WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
-                    RESULT_VARIABLE ACADOS_GIT_OUT
-                    OUTPUT_VARIABLE ACADOS_GIT_OUT)
+    execute_process(COMMAND
+        git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v${ACADOS_VERSION} .
+      WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
+      RESULT_VARIABLE ACADOS_GIT_OUT
+      OUTPUT_VARIABLE ACADOS_GIT_OUT)
   else()
     message(STATUS "${ACADOS_SOURCE_BUILD_DIR} already exists")
   endif()
