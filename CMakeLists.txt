@@ -57,11 +57,12 @@ set(ACADOS_SOURCE_BUILD_DIR ${CMAKE_BINARY_DIR}/acados_vendor_ros2-prefix/src/ac
 set(ACADOS_PYTHON_INTERFACE_PATH none) # Python package after install, set below if package built
 
 if(${BUILD_ACADOS_TEMPLATE})
+  message(STATUS "Building Acados Python interface (acados_template) package...")
   set(ACADOS_PYTHON_INTERFACE_PCK_DIR "${ACADOS_SOURCE_BUILD_DIR}/interfaces/acados_template/acados_template")
 
   if(NOT EXISTS "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
-    message(STATUS "Cloning Acados source")
     file(MAKE_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR})
+    message(STATUS "Cloning Acados source repository into ${ACADOS_SOURCE_BUILD_DIR}...")
     execute_process(COMMAND
         git clone -c advice.detachedHead=false --quiet --recursive https://github.com/acados/acados.git -b v${ACADOS_VERSION} .
       WORKING_DIRECTORY ${ACADOS_SOURCE_BUILD_DIR}
@@ -71,10 +72,23 @@ if(${BUILD_ACADOS_TEMPLATE})
     message(STATUS "${ACADOS_SOURCE_BUILD_DIR} already exists")
   endif()
 
+  # Ensure the package is present in the source dir for symlink install
+  set(SYMLINK_PYTHON_PKG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/symlink_dir")
+  set(ACADOS_TEMPLATE_SRC "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
+  set(ACADOS_TEMPLATE_SYMLINK_DST "${SYMLINK_PYTHON_PKG_DIR}/acados_template")
+
+  # Remove old copy if it exists
+  file(REMOVE_RECURSE "${ACADOS_TEMPLATE_SYMLINK_DST}")
+
+  # Copy the Python package at configure time
+  file(COPY "${ACADOS_TEMPLATE_SRC}" DESTINATION "${SYMLINK_PYTHON_PKG_DIR}")
+
+  # Create a symlink to the Python package in the source directory
   ament_python_install_package(
     acados_template
-    PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
+    PACKAGE_DIR "${ACADOS_TEMPLATE_SYMLINK_DST}"
   )
+
   set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
   message(
     STATUS
@@ -83,6 +97,7 @@ if(${BUILD_ACADOS_TEMPLATE})
     '${ACADOS_PYTHON_INTERFACE_PATH}'."
   )
 
+  # Install the Tera renderer binaries
   set(TERA_RENDERER "${ACADOS_SOURCE_DIR}/bin/t_renderer")
   if(NOT EXISTS "${TERA_RENDERER}")
     # Add empty bin directory (used to download the tera renderer)
