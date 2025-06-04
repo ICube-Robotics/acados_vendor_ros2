@@ -72,10 +72,23 @@ if(${BUILD_ACADOS_TEMPLATE})
     message(STATUS "${ACADOS_SOURCE_BUILD_DIR} already exists")
   endif()
 
+  # Ensure the package is present in the source dir for symlink install
+  set(SYMLINK_PYTHON_PKG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/symlink_dir")
+  set(ACADOS_TEMPLATE_SRC "${ACADOS_PYTHON_INTERFACE_PCK_DIR}")
+  set(ACADOS_TEMPLATE_SYMLINK_DST "${SYMLINK_PYTHON_PKG_DIR}/acados_template")
+
+  # Remove old copy if it exists
+  file(REMOVE_RECURSE "${ACADOS_TEMPLATE_SYMLINK_DST}")
+
+  # Copy the Python package at configure time
+  file(COPY "${ACADOS_TEMPLATE_SRC}" DESTINATION "${SYMLINK_PYTHON_PKG_DIR}")
+
+  # Create a symlink to the Python package in the source directory
   ament_python_install_package(
     acados_template
-    PACKAGE_DIR ${ACADOS_PYTHON_INTERFACE_PCK_DIR}
+    PACKAGE_DIR "${ACADOS_TEMPLATE_SYMLINK_DST}"
   )
+
   set(ACADOS_PYTHON_INTERFACE_PATH ${CMAKE_INSTALL_PREFIX}/${PYTHON_INSTALL_DIR}/acados_template) # Python package after install
   message(
     STATUS
@@ -84,6 +97,7 @@ if(${BUILD_ACADOS_TEMPLATE})
     '${ACADOS_PYTHON_INTERFACE_PATH}'."
   )
 
+  # Install the Tera renderer binaries
   set(TERA_RENDERER "${ACADOS_SOURCE_DIR}/bin/t_renderer")
   if(NOT EXISTS "${TERA_RENDERER}")
     # Add empty bin directory (used to download the tera renderer)

@@ -1,3 +1,6 @@
 build/
 install/
 log/
+
+# Ignore copied files for symlinks
+symlink_dir/
